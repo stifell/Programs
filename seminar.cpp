@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 
 using namespace std;
 
@@ -10,10 +10,10 @@ struct Node2 {
 };
 
 
-// Добавление данных:
+// Р”РѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С…:
 void add(Node2** ppbeg, Node2** ppend, int dd) {
 	Node2 *pv = new Node2;
-	// Заполнение полей:
+	// Р—Р°РїРѕР»РЅРµРЅРёРµ РїРѕР»РµР№:
 	pv->d = dd;
 	pv->next = 0;
 	if (*ppbeg == 0 && *ppend == 0) {
@@ -28,7 +28,7 @@ void add(Node2** ppbeg, Node2** ppend, int dd) {
 		}
 }
 
-// Поиск ключа:
+// РџРѕРёСЃРє РєР»СЋС‡Р°:
 Node2* find(Node2* const pbeg, int key) {
 	Node2 *pv = pbeg;
 	while (pv) {
@@ -38,7 +38,7 @@ Node2* find(Node2* const pbeg, int key) {
 	return pv;
 }
 
-// Удаление узла:
+// РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р°:
 bool remove(Node2** ppbeg, Node2** ppend, int key) {
 	if (Node2* pkey = find(*ppbeg, key)) {
 		if (pkey == *ppbeg) {
@@ -59,7 +59,7 @@ bool remove(Node2** ppbeg, Node2** ppend, int key) {
 	return false;
 }
 
-// Добавление узла до/после/конец (insert):
+// Р”РѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р° РґРѕ/РїРѕСЃР»Рµ/РєРѕРЅРµС† (insert):
 Node2* insert(Node2* const pbeg, Node2** ppend, int key, int dd) {
 	if (Node2* pkey = find(pbeg, key)) {
 		Node2* pv = new Node2;
@@ -83,7 +83,7 @@ int main()
 	{
 		add(&pbeg, &pend, i);}
 	insert(pbeg, &pend, 2, 49);
-	if (!remove(&pbeg, &pend, 4)) cout << "Узел не найден!" << endl;
+	if (!remove(&pbeg, &pend, 4)) cout << "РЈР·РµР» РЅРµ РЅР°Р№РґРµРЅ!" << endl;
 	Node2* pv = pbeg;
 	while (pv) {
 		cout << pv->d << ' ';
