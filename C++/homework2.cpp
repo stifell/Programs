@@ -9,12 +9,14 @@ struct Node1 {
 	Node1* next;
 };
 
+// Функция добавления пустого узла, так и не пустого
 Node1* add(Node1** ppbeg, int dd) {
 	Node1* pv = new Node1;
 	pv->d = dd;
 	pv->next = 0;
 	if (*ppbeg)
 	{
+		// Используем "скользящий" узел для добавления не пустого списка
 		Node1* temp = *ppbeg;
 		while (temp->next) temp = temp->next;
 		temp->next = pv;
@@ -23,6 +25,7 @@ Node1* add(Node1** ppbeg, int dd) {
 	return *ppbeg;
 }
 
+// Функция для вычисления суммы списка
 int sum(Node1* pbeg) {
 	int s = 0;
 	Node1* pv = pbeg;
@@ -34,6 +37,7 @@ int sum(Node1* pbeg) {
 	return s;
 }
 
+// Функция для подсчета кол-во экземпляров введенного числа
 int find(Node1* pbeg, int key) {
 	int f = 0;
 	Node1* pv = pbeg;
@@ -45,6 +49,7 @@ int find(Node1* pbeg, int key) {
 	return f;
 }
 
+// Функция для добавления нового узла в начало списка
 Node1* first(Node1* pbeg, int key) {
 	Node1* pv = new Node1;
 	pv->d = key;
@@ -56,7 +61,7 @@ Node1* first(Node1* pbeg, int key) {
 
 int main() {
 	setlocale(LC_ALL, "Russian");
-	Node1* pbeg = 0; 
+	Node1* pbeg = 0;
 	int size;
 	cout << "Задайте числа:\n";
 	while (1)
@@ -78,6 +83,7 @@ int main() {
 		cout << pv->d << " ";
 		pv = pv->next;
 	}
+	cout << endl;
 
 	return 0;
 }
