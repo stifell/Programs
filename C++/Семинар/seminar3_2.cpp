@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<fstream>
 
 using namespace std;
@@ -42,7 +42,7 @@ void readDBT(trm** ppbeg, trm** ppend) {
 void printDBT(trm* pbeg) {
 	trm* pv = pbeg;
 	while (pv) {
-		cout << "\nÍîìåð ìàðøðóòà: " << pv->nm << "\nÁîðòîâîé íîìåð: " << pv->nb << "\nÔàìèëèÿ âîäèòåëÿ: " << pv->fio << 
+		cout << "\nÐÐ¾Ð¼ÐµÑ€ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð°: " << pv->nm << "\nÐ‘Ð¾Ñ€Ñ‚Ð¾Ð²Ð¾Ð¹ Ð½Ð¾Ð¼ÐµÑ€: " << pv->nb << "\nÐ¤Ð°Ð¼Ð¸Ð»Ð¸Ñ Ð²Ð¾Ð´Ð¸Ñ‚ÐµÐ»Ñ: " << pv->fio << 
 			"\n-------------------";
 		pv = pv->next;
 	}
@@ -53,13 +53,13 @@ void marsh(int m) {
 	trm* pv = pbeg;
 	while (pv) {
 		if (m == pv->nm) {
-			cout << "\nÍîìåð ìàðøðóòà: " << pv->nm << "\nÁîðòîâîé íîìåð: " << pv->nb << "\nÔàìèëèÿ âîäèòåëÿ: " << pv->fio << endl;
+			cout << "\nÐÐ¾Ð¼ÐµÑ€ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð°: " << pv->nm << "\nÐ‘Ð¾Ñ€Ñ‚Ð¾Ð²Ð¾Ð¹ Ð½Ð¾Ð¼ÐµÑ€: " << pv->nb << "\nÐ¤Ð°Ð¼Ð¸Ð»Ð¸Ñ Ð²Ð¾Ð´Ð¸Ñ‚ÐµÐ»Ñ: " << pv->fio << endl;
 			a = true;
 		}
 		pv = pv->next;
 	}
 	if (a == false) {
-		cout << "Òàêîãî ìàðøðóòà íåò!\n";
+		cout << "Ð¢Ð°ÐºÐ¾Ð³Ð¾ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð° Ð½ÐµÑ‚!\n";
 	}
 
 }
@@ -71,7 +71,7 @@ int main()
 	int t;
 	readDBT(&pbeg, &pend);
 	printDBT(pbeg);
-	cout << "\n\nÍîìåð ìàðøðóòà: "; cin >> t;
+	cout << "\n\nÐÐ¾Ð¼ÐµÑ€ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð°: "; cin >> t;
 	marsh(t);
 
 	return 0;
