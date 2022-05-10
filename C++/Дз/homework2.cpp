@@ -1,94 +1,88 @@
-﻿#include <iostream>
+﻿// Домашнее задание №2
+// Матюшкин Денис Владимирович НПИбд-02-21 №1032212279
+#include<iostream>
 
 using namespace std;
 
-
-struct Node2 {
-	int d;
-	Node2* next;
-	Node2* prev;
+struct Node1 {
+    int d;
+    Node1* next;
 };
 
-
-// Добавление данных:
-void add(Node2** ppbeg, Node2** ppend, int dd) {
-	Node2* pv = new Node2;
-	// Заполнение полей:
-	pv->d = dd;
-	pv->next = 0;
-	if (*ppbeg == 0 && *ppend == 0) {
-		pv->prev = 0;
-		*ppbeg = pv;
-		*ppend = pv;
-	}
-	else {
-		pv->prev = *ppend;
-		(*ppend)->next = pv;
-		*ppend = pv;
-	}
+// Функция добавления пустого узла, так и не пустого
+Node1* add(Node1** ppbeg, int dd) {
+    Node1* pv = new Node1;
+    pv->d = dd;
+    pv->next = 0;
+    if (*ppbeg)
+    {
+        // Используем "скользящий" узел для добавления не пустого списка
+        Node1* temp = *ppbeg;
+        while (temp->next) temp = temp->next;
+        temp->next = pv;
+    }
+    else *ppbeg = pv;
+    return *ppbeg;
 }
 
-// Поиск ключа:
-Node2* find(Node2* const pbeg, int key) {
-	Node2* pv = pbeg;
-	while (pv) {
-		if (pv->d == key) break;
-		pv = pv->next;
-	}
-	return pv;
+// Функция для вычисления суммы списка
+int sum(Node1* pbeg) {
+    int s = 0;
+    Node1* pv = pbeg;
+    while (pv)
+    {
+        s += pv->d;
+        pv = pv->next;
+    }
+    return s;
 }
 
-// Удаление узла:
-bool remove(Node2** ppbeg, Node2** ppend, int key) {
-	if (Node2* pkey = find(*ppbeg, key)) {
-		if (pkey == *ppbeg) {
-			*ppbeg = (*ppbeg)->next;
-			(*ppbeg)->prev = 0;
-		}
-		else if (pkey == *ppend) {
-			*ppend = (*ppend)->prev;
-			(*ppend)->next = 0;
-		}
-		else {
-			(pkey->prev)->next = pkey->next;
-			(pkey->next)->prev = pkey->prev;
-		}
-		delete pkey;
-		return true;
-	}
-	return false;
+// Функция для подсчета кол-во экземпляров введенного числа
+int find(Node1* pbeg, int key) {
+    int f = 0;
+    Node1* pv = pbeg;
+    while (pv)
+    {
+        if (pv->d == key) f += 1;
+        pv = pv->next;
+    }
+    return f;
 }
 
-// Добавление узла до/после/конец (insert):
-Node2* insert(Node2* const pbeg, Node2** ppend, int key, int dd) {
-	if (Node2* pkey = find(pbeg, key)) {
-		Node2* pv = new Node2;
-		pv->d = dd;
-		pv->next = pkey->next;
-		pv->prev = pkey;
-		pkey->next = pv;
-		if (pkey != *ppend) (pv->next)->prev = pv;
-		else *ppend = pv;
-		return pv;
-	}
-	return 0;
+// Функция для добавления нового узла в начало списка
+Node1* first(Node1* pbeg, int key) {
+    Node1* pv = new Node1;
+    pv->d = key;
+    pv->next = pbeg;
+    pbeg = pv;
+
+    return pv;
 }
 
+int main() {
+    setlocale(LC_ALL, "Russian");
+    Node1* pbeg = 0;
+    int size;
+    cout << "Задайте числа:\n";
+    while (1)
+    {
+        cin >> size;
+        if (size == 0) break;
+        pbeg = add(&pbeg, size);
+    }
+    cout << "Сумма: " << sum(pbeg);
+    cout << "\n\nВведите цисло для поиска: ";
+    cin >> size;
 
-int main()
-{
-	Node2* pbeg = 0;
-	Node2* pend = pbeg;
-	for (int i = 1; i <= 5; i++)
-	{
-		add(&pbeg, &pend, i);
-	}
-	insert(pbeg, &pend, 2, 49);
-	if (!remove(&pbeg, &pend, 4)) cout << "Узел не найден!" << endl;
-	Node2* pv = pbeg;
-	while (pv) {
-		cout << pv->d << ' ';
-		pv = pv->next;
-	}
-	return 0;
+    cout << "Кол-во экземпляров числа в списке: " << find(pbeg, size);
+
+    cout << "\n\nВведите ключ нового узла: ";
+    cin >> size;
+    Node1* pv = first(pbeg, size);
+    while (pv) {
+        cout << pv->d << " ";
+        pv = pv->next;
+    }
+
+    return 0;
 }
