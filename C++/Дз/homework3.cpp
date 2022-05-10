@@ -48,7 +48,7 @@ void read(Student** ppbeg, Student** ppend) {
     }
 }
 
-//Функция для вычисления сред. оценки
+//Вычисление сред. оценки
 double compute(int* arr) {
     int size = 0;
     for (int i = 0; i < 5; i++)
@@ -58,7 +58,7 @@ double compute(int* arr) {
     return size / 5.0;
 }
 
-//Функция для вывода данных из файла
+//Вывод данных из файла
 void print(Student* pbeg) {
     Student* pv = pbeg;
     while (pv) {
@@ -68,7 +68,7 @@ void print(Student* pbeg) {
     }
 }
 
-//Функция для вывода нужных студентов
+//Вывод нужных студентов
 void cat(int m) {
     int i = 0;
     bool a = false;
